@@ -1,5 +1,33 @@
 import { motion } from "framer-motion";
+import { Brain, AudioWaveform, Database, FlaskConical } from "lucide-react";
 import aiPattern from "@/assets/ai-pattern.jpg";
+
+const focusAreas = [
+  {
+    icon: AudioWaveform,
+    title: "Speech & Audio AI",
+    description:
+      "Real-time speech enhancement pipelines with sub-10ms latency. Deep filtering, DSP optimization, and neural noise suppression for production systems.",
+  },
+  {
+    icon: Brain,
+    title: "NLP & Language Models",
+    description:
+      "Fine-tuning transformers (RoBERTa, BERT, LLaMA) for classification, semantic matching, and zero-shot inference at scale with DeepSpeed optimization.",
+  },
+  {
+    icon: Database,
+    title: "Data Engineering",
+    description:
+      "End-to-end pipelines for data extraction, transformation, and loading. Automated scraping, cleaning, and integration across unstructured formats.",
+  },
+  {
+    icon: FlaskConical,
+    title: "Causal & Statistical Analysis",
+    description:
+      "Rigorous A/B testing, causal discovery, and multivariate analysis. Turning 20+ years of longitudinal data into actionable research insights.",
+  },
+];
 
 const skillCategories = [
   {
@@ -16,21 +44,14 @@ const skillCategories = [
   },
 ];
 
-const impactStats = [
-  { value: "66%", label: "Computational Load Reduction" },
-  { value: "10ms", label: "Real-Time Latency" },
-  { value: "87.3%", label: "Model Accuracy" },
-  { value: "40%", label: "Faster Inference" },
-];
-
 const SkillsSection = () => {
   return (
     <section id="skills">
-      {/* Impact Stats Banner */}
+      {/* What I Do */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0">
-          <img src={aiPattern} alt="" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-background/70" />
+          <img src={aiPattern} alt="" className="w-full h-full object-cover opacity-15" />
+          <div className="absolute inset-0 bg-background/80" />
         </div>
         <div className="relative section-padding max-w-6xl mx-auto">
           <motion.div
@@ -38,28 +59,34 @@ const SkillsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.5 }}
-            className="text-center mb-12"
+            className="text-center mb-14"
           >
             <p className="font-mono text-primary text-sm tracking-widest uppercase mb-3">
-              Impact by the Numbers
+              What I Do
             </p>
+            <h2 className="text-3xl md:text-4xl font-bold">
+              Areas of <span className="text-gradient">Expertise</span>
+            </h2>
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {impactStats.map((stat, i) => (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {focusAreas.map((area, i) => (
               <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, y: 20 }}
+                key={area.title}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.1 }}
-                className="text-center"
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group bg-card/60 backdrop-blur rounded-xl p-6 border border-border hover:border-glow hover:glow transition-all duration-300"
               >
-                <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">
-                  {stat.value}
+                <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                  <area.icon size={22} className="text-primary" />
                 </div>
-                <p className="text-muted-foreground text-xs md:text-sm">
-                  {stat.label}
+                <h3 className="font-semibold text-base mb-2 group-hover:text-primary transition-colors">
+                  {area.title}
+                </h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  {area.description}
                 </p>
               </motion.div>
             ))}
