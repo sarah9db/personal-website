@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import dataVisual from "@/assets/data-visual.jpg";
 
 const experiences = [
   {
@@ -58,51 +59,71 @@ const experiences = [
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="section-padding max-w-5xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5 }}
-      >
-        <h2 className="text-3xl md:text-4xl font-bold mb-2">Experience</h2>
-        <div className="w-16 h-1 bg-primary rounded mb-12" />
-      </motion.div>
+    <section id="experience" className="relative">
+      {/* Visual break - full-width image band */}
+      <div className="relative h-40 md:h-56 overflow-hidden">
+        <img
+          src={dataVisual}
+          alt="Data visualization"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-transparent to-background" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="font-mono text-primary text-sm tracking-[0.3em] uppercase"
+          >
+            Where I've Made Impact
+          </motion.p>
+        </div>
+      </div>
 
-      <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-0 md:left-4 top-0 bottom-0 w-px bg-border" />
+      <div className="section-padding max-w-5xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-3xl md:text-4xl font-bold mb-2">Experience</h2>
+          <div className="w-16 h-1 bg-primary rounded mb-12" />
+        </motion.div>
 
-        <div className="space-y-12">
-          {experiences.map((exp, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="relative pl-8 md:pl-14"
-            >
-              {/* Timeline dot */}
-              <div className="absolute left-0 md:left-4 top-1.5 w-2 h-2 rounded-full bg-primary -translate-x-[3px]" />
+        <div className="relative">
+          <div className="absolute left-0 md:left-4 top-0 bottom-0 w-px bg-border" />
 
-              <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-4 mb-3">
-                <h3 className="text-xl font-semibold">{exp.role}</h3>
-                <span className="text-primary font-medium">@ {exp.company}</span>
-              </div>
-              <p className="font-mono text-xs text-muted-foreground mb-4">
-                {exp.location} · {exp.period}
-              </p>
-              <ul className="space-y-2">
-                {exp.bullets.map((b, j) => (
-                  <li key={j} className="text-secondary-foreground text-sm leading-relaxed flex gap-3">
-                    <span className="text-primary mt-1.5 shrink-0">▸</span>
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
+          <div className="space-y-12">
+            {experiences.map((exp, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+                className="relative pl-8 md:pl-14"
+              >
+                <div className="absolute left-0 md:left-4 top-1.5 w-2 h-2 rounded-full bg-primary -translate-x-[3px]" />
+
+                <div className="flex flex-col md:flex-row md:items-baseline gap-1 md:gap-4 mb-3">
+                  <h3 className="text-xl font-semibold">{exp.role}</h3>
+                  <span className="text-primary font-medium">@ {exp.company}</span>
+                </div>
+                <p className="font-mono text-xs text-muted-foreground mb-4">
+                  {exp.location} · {exp.period}
+                </p>
+                <ul className="space-y-2">
+                  {exp.bullets.map((b, j) => (
+                    <li key={j} className="text-secondary-foreground text-sm leading-relaxed flex gap-3">
+                      <span className="text-primary mt-1.5 shrink-0">▸</span>
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
